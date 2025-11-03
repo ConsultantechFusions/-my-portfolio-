@@ -1,0 +1,187 @@
+/* Global variables */
+:root {
+  --background-color: #0a0a0f;
+  --foreground-color: #f5f5f5;
+  --accent-color: #00e0ff;
+  --secondary-accent: #00ff88;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  line-height: 1.5;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+#lang-toggle {
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+#lang-toggle:hover {
+  background: var(--accent-color);
+  color: var(--background-color);
+}
+
+.section {
+  padding: 4rem 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.hero-section .hero-content h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.hero-section .hero-content p {
+  font-size: 1.25rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+
+/* 3D cube styles */
+.cube-container {
+  perspective: 800px;
+  width: 180px;
+  height: 180px;
+  margin-bottom: 2rem;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotateCube 12s infinite linear;
+}
+
+.cube .face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  font-size: 2rem;
+  font-weight: 700;
+  text-shadow: 0 0 10px var(--accent-color);
+}
+
+/* Position each face of the cube */
+.cube .front  { transform: translateZ(90px); }
+.cube .back   { transform: rotateY(180deg) translateZ(90px); }
+.cube .right  { transform: rotateY(90deg) translateZ(90px); }
+.cube .left   { transform: rotateY(-90deg) translateZ(90px); }
+.cube .top    { transform: rotateX(90deg) translateZ(90px); }
+.cube .bottom { transform: rotateX(-90deg) translateZ(90px); }
+
+@keyframes rotateCube {
+  from {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+/* Badge grid */
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.badge-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.badge-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+.badge-card img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.badge-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.badge-date {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.badge-desc {
+  font-size: 0.8rem;
+  margin-top: 0.6rem;
+  line-height: 1.4;
+  display: none;
+}
+
+.badge-card.active .badge-desc {
+  display: block;
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+  .hero-section .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .hero-section .hero-content p {
+    font-size: 1rem;
+  }
+  .section {
+    padding: 3rem 1rem;
+  }
+}
